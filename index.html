@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кирилл Долгорученко · Middle Python Backend Developer</title>
+    <title>Kirill Dolgoruchenko · Middle Python Backend Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -109,11 +109,18 @@
             border-bottom-color: rgba(90, 126, 208, 0.3);
         }
 
-        /* Кнопка переключения темы */
-        .theme-toggle {
+        /* Контейнер для кнопок управления */
+        .controls {
             position: fixed;
             top: 20px;
             right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        /* Кнопки переключения темы и языка */
+        .theme-toggle, .lang-toggle {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(8px);
             width: 48px;
@@ -125,19 +132,20 @@
             cursor: pointer;
             border: 1px solid rgba(255,255,255,0.5);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 1000;
             transition: 0.2s;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #1e2b3c;
         }
 
-        body.dark .theme-toggle {
+        body.dark .theme-toggle,
+        body.dark .lang-toggle {
             background: rgba(30, 40, 60, 0.5);
             color: #ffdb70;
             border-color: rgba(255,255,255,0.2);
         }
 
-        .theme-toggle:hover {
+        .theme-toggle:hover,
+        .lang-toggle:hover {
             transform: scale(1.1);
         }
 
@@ -163,6 +171,13 @@
             font-weight: 600;
             box-shadow: 0 10px 20px -5px rgba(0, 50, 100, 0.3);
             border: 4px solid white;
+            overflow: hidden;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .title h1 {
@@ -387,7 +402,7 @@
             .title .subhead {
                 justify-content: center;
             }
-            .theme-toggle {
+            .controls {
                 top: 10px;
                 right: 10px;
             }
@@ -399,6 +414,7 @@
                 align-items: flex-start;
             }
         }
+        
         /* Дополнительные улучшения для очень маленьких экранов */
         @media (max-width: 400px) {
             .resume-card {
@@ -438,26 +454,33 @@
     </style>
 </head>
 <body>
-    <div class="theme-toggle" id="themeToggle" title="Переключить тему">
-        <i class="fas fa-moon"></i>
+    <div class="controls">
+        <div class="lang-toggle" id="langToggle" title="Switch language / Переключить язык">
+            <i class="fas fa-language"></i>
+        </div>
+        <div class="theme-toggle" id="themeToggle" title="Переключить тему / Toggle theme">
+            <i class="fas fa-moon"></i>
+        </div>
     </div>
 
     <div class="resume-card">
-        <!-- ШАПКА -->
+        <!-- ШАПКА / HEADER -->
         <div class="header">
-            <div class="avatar" style="overflow: hidden;">
-                <img src="https://i.ibb.co/cnn6V4q/edited-image-1-6.png" alt="Кирилл Долгорученко" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="avatar">
+                <img src="https://i.ibb.co/cnn6V4q/edited-image-1-6.png" alt="Kirill Dolgoruchenko">
             </div>
             <div class="title">
-                <h1>Кирилл Долгорученко</h1>
+                <h1 data-ru="Кирилл Долгорученко" data-en="Kirill Dolgoruchenko">Кирилл Долгорученко</h1>
                 <div class="subhead">
-                    <i class="fas fa-code"></i> Middle Python Backend Developer
-                    <i class="fas fa-map-pin" style="margin-left: 0.8rem;"></i> Москва / МО / удалёнка / гибрид
+                    <i class="fas fa-code"></i> 
+                    <span data-ru="Middle Python Backend Developer" data-en="Middle Python Backend Developer">Middle Python Backend Developer</span>
+                    <i class="fas fa-map-pin" style="margin-left: 0.8rem;"></i>
+                    <span data-ru="Москва / МО / удалёнка / гибрид" data-en="Moscow / Remote / Hybrid">Москва / МО / удалёнка / гибрид</span>
                 </div>
             </div>
         </div>
 
-        <!-- КОНТАКТЫ -->
+        <!-- КОНТАКТЫ / CONTACTS -->
         <div class="contact-bar">
             <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:knxtex@gmail.com">knxtex@gmail.com</a></div>
             <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+79995555798">+7 (999) 555-57-98</a></div>
@@ -465,26 +488,22 @@
             <div class="contact-item"><i class="fab fa-github"></i> <a href="#" target="_blank">github.com/kerxl</a></div>
         </div>
 
-        <!-- ПРОФИЛЬ -->
+        <!-- ПРОФИЛЬ / PROFILE -->
         <div style="margin-bottom: 2rem;">
-            <div class="section-title"><i class="fas fa-user"></i> О себе</div>
-            <p style="font-size: 1rem;">
-                Backend-разработчик с 4-летним опытом создания и масштабирования сложных, с архитектурной точки зрения, систем на Python (Flask, SQLAlchemy). 
-                В своей работе реализую полный цикл: от проектирования на основе ТЗ до реализации и тестирования. 
-                Специализируюсь на проектировании интеграционных решений, оптимизации производительности и написании чистого, тестируемого кода. 
-                Регулярно провожу код-ревью, документирую архитектуру, разрабатываю внутренние библиотеки. 
-                Ищу команду, где ценят инженерную культуру и совместное развитие.
+            <div class="section-title"><i class="fas fa-user"></i> <span data-ru="О себе" data-en="About me">О себе</span></div>
+            <p style="font-size: 1rem;" data-ru="Backend-разработчик с 4-летним опытом создания и масштабирования сложных, с архитектурной точки зрения, систем на Python (Flask, SQLAlchemy). В своей работе реализую полный цикл: от проектирования на основе ТЗ до реализации и тестирования. Специализируюсь на проектировании интеграционных решений, оптимизации производительности и написании чистого, тестируемого кода. Регулярно провожу код-ревью, документирую архитектуру, разрабатываю внутренние библиотеки. Ищу команду, где ценят инженерную культуру и совместное развитие." data-en="Backend developer with 4 years of experience creating and scaling architecturally complex systems in Python (Flask, SQLAlchemy). I handle the full development cycle: from technical specification design to implementation and testing. I specialize in designing integration solutions, performance optimization, and writing clean, testable code. I regularly conduct code reviews, document architecture, and develop internal libraries. I'm looking for a team that values engineering culture and collaborative development.">
+                Backend-разработчик с 4-летним опытом создания и масштабирования сложных, с архитектурной точки зрения, систем на Python (Flask, SQLAlchemy). В своей работе реализую полный цикл: от проектирования на основе ТЗ до реализации и тестирования. Специализируюсь на проектировании интеграционных решений, оптимизации производительности и написании чистого, тестируемого кода. Регулярно провожу код-ревью, документирую архитектуру, разрабатываю внутренние библиотеки. Ищу команду, где ценят инженерную культуру и совместное развитие.
             </p>
         </div>
 
-        <!-- ДВЕ КОЛОНКИ: Навыки + Остальное -->
+        <!-- ДВЕ КОЛОНКИ: Навыки + Опыт / TWO COLUMNS: Skills + Experience -->
         <div class="grid-2">
-            <!-- Левая колонка: Навыки (группированные) -->
+            <!-- Левая колонка: Навыки / Left column: Skills -->
             <div>
-                <div class="section-title"><i class="fas fa-cogs"></i> Навыки</div>
+                <div class="section-title"><i class="fas fa-cogs"></i> <span data-ru="Навыки" data-en="Skills">Навыки</span></div>
                 
                 <div class="skills-group">
-                    <h3>Languages</h3>
+                    <h3 data-ru="Языки" data-en="Languages">Языки</h3>
                     <div class="skills">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">Bash</span>
@@ -492,7 +511,7 @@
                 </div>
 
                 <div class="skills-group">
-                    <h3>Frameworks & Libraries</h3>
+                    <h3 data-ru="Фреймворки и библиотеки" data-en="Frameworks & Libraries">Фреймворки и библиотеки</h3>
                     <div class="skills">
                         <span class="skill-tag">Flask</span>
                         <span class="skill-tag">SQLAlchemy</span>
@@ -502,7 +521,7 @@
                 </div>
 
                 <div class="skills-group">
-                    <h3>Databases & Message brokers</h3>
+                    <h3 data-ru="Базы данных и брокеры сообщений" data-en="Databases & Message brokers">Базы данных и брокеры сообщений</h3>
                     <div class="skills">
                         <span class="skill-tag">PostgreSQL</span>
                         <span class="skill-tag">RabbitMQ</span>
@@ -510,156 +529,206 @@
                 </div>
 
                 <div class="skills-group">
-                    <h3>Tools & Other</h3>
+                    <h3 data-ru="Инструменты и другое" data-en="Tools & Other">Инструменты и другое</h3>
                     <div class="skills">
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Docker (базово)</span>
+                        <span class="skill-tag">Docker (basic)</span>
                         <span class="skill-tag">CI/CD (basic)</span>
-                        <span class="skill-tag">Разработка библиотек</span>
-                        <span class="skill-tag">Код-ревью</span>
-                        <span class="skill-tag">Техническая документация</span>
+                        <span class="skill-tag" data-ru="Разработка библиотек" data-en="Library development">Разработка библиотек</span>
+                        <span class="skill-tag" data-ru="Код-ревью" data-en="Code review">Код-ревью</span>
+                        <span class="skill-tag" data-ru="Техническая документация" data-en="Technical documentation">Техническая документация</span>
                     </div>
                 </div>
 
-                <!-- Образование -->
+                <!-- Образование / Education -->
                 <div style="margin-top: 2rem;">
-                    <div class="section-title"><i class="fas fa-graduation-cap"></i> Образование</div>
+                    <div class="section-title"><i class="fas fa-graduation-cap"></i> <span data-ru="Образование" data-en="Education">Образование</span></div>
                     <div class="timeline-item">
                         <div class="item-header">
-                            <span class="item-title">ККМТ г. Королев</span>
+                            <span class="item-title" data-ru="ККМТ г. Королев" data-en="KKMT, Korolev">ККМТ г. Королев</span>
                             <span class="item-date">2016 – 2020</span>
                         </div>
-                        <div class="item-subtitle">Техник-программист (специалист)</div>
+                        <div class="item-subtitle" data-ru="Техник-программист (специалист)" data-en="Software Technician (Specialist)">Техник-программист (специалист)</div>
                     </div>
                 </div>
 
-                <!-- Языки -->
+                <!-- Языки / Languages -->
                 <div style="margin-top: 1.5rem;">
-                    <div class="section-title"><i class="fas fa-language"></i> Языки</div>
+                    <div class="section-title"><i class="fas fa-language"></i> <span data-ru="Языки" data-en="Languages">Языки</span></div>
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(43,90,140,0.2); padding: 0.5rem 0;">
-                        <span>Английский</span>
+                        <span data-ru="Английский" data-en="English">Английский</span>
                         <span style="color: #2b5a8c;">A2 (Pre‑Intermediate)</span>
                     </div>
                 </div>
-                <!-- После блока "Языки" -->
+                
+                <!-- Ключевые компетенции / Key competencies -->
                 <div style="margin-top: 2rem;">
-                    <div class="section-title"><i class="fas fa-star"></i> Ключевые компетенции</div>
+                    <div class="section-title"><i class="fas fa-star"></i> <span data-ru="Ключевые компетенции" data-en="Key competencies">Ключевые компетенции</span></div>
                     <ul style="list-style: none; padding: 0;">
                         <li style="margin-bottom: 0.7rem; display: flex; gap: 0.5rem;">
                             <i class="fas fa-check-circle" style="color: #2b5a8c; width: 1.5rem;"></i>
-                            <span>Проектирование архитектуры интеграционных решений</span>
+                            <span data-ru="Проектирование архитектуры интеграционных решений" data-en="Integration solutions architecture design">Проектирование архитектуры интеграционных решений</span>
                         </li>
                         <li style="margin-bottom: 0.7rem; display: flex; gap: 0.5rem;">
                             <i class="fas fa-check-circle" style="color: #2b5a8c; width: 1.5rem;"></i>
-                            <span>Разработка внутренних библиотек и инструментов</span>
+                            <span data-ru="Разработка внутренних библиотек и инструментов" data-en="Internal libraries and tools development">Разработка внутренних библиотек и инструментов</span>
                         </li>
                         <li style="margin-bottom: 0.7rem; display: flex; gap: 0.5rem;">
                             <i class="fas fa-check-circle" style="color: #2b5a8c; width: 1.5rem;"></i>
-                            <span>Оптимизация производительности и рефакторинг</span>
+                            <span data-ru="Оптимизация производительности и рефакторинг" data-en="Performance optimization and refactoring">Оптимизация производительности и рефакторинг</span>
                         </li>
                         <li style="margin-bottom: 0.7rem; display: flex; gap: 0.5rem;">
                             <i class="fas fa-check-circle" style="color: #2b5a8c; width: 1.5rem;"></i>
-                            <span>Работа с legacy-кодом и его поддержка</span>
+                            <span data-ru="Работа с legacy-кодом и его поддержка" data-en="Legacy code maintenance and support">Работа с legacy-кодом и его поддержка</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Правая колонка: Опыт работы -->
+            <!-- Правая колонка: Опыт работы / Right column: Work experience -->
             <div>
-                <div class="section-title"><i class="fas fa-briefcase"></i> Опыт работы</div>
+                <div class="section-title"><i class="fas fa-briefcase"></i> <span data-ru="Опыт работы" data-en="Work experience">Опыт работы</span></div>
 
-                <!-- К-Технологии (основное место) -->
+                <!-- К-Технологии / K-Technologies -->
                 <div class="timeline-item">
                     <div class="item-header">
-                        <span class="item-title">Ведущий специалист (Python Backend)</span>
-                        <span class="item-date">июнь 2022 — наст. время</span>
+                        <span class="item-title" data-ru="Ведущий специалист (Python Backend)" data-en="Lead Specialist (Python Backend)">Ведущий специалист (Python Backend)</span>
+                        <span class="item-date">June 2022 — present</span>
                     </div>
-                    <div class="item-subtitle">К-Технологии · Москва (полный день)</div>
+                    <div class="item-subtitle">K-Technologies · Moscow (full-time)</div>
                     <div class="item-description">
                         <ul>
-                            <li><strong>Разработал систему снепшотов</strong>, что позволило переиспользовать её в нескольких микросервисах, ускорило восстановление состояния после перезапуска <strong>в 3 раза</strong> и сократило дублирование кода.</li>
-                            <li><strong>Спроектировал и реализовал сервис интеграции</strong>, на основе своего же <strong>boilerplate</strong>, который централизовал взаимодействие с <strong>7 внутренними системами</strong> компании, упростив добавление новых интеграций и сократив время на их поддержку.</li>
-                            <li><strong>Разработал библиотеку для генерации отчётов в форматах XLSX и ODT</strong>, чтобы унифицировать выгрузку данных из разных модулей и избавить фронтенд от сложной обработки — автоматизировал формирование документов, сократив время разработки аналогичных задач и упростив поддержку. </li>
-                            <li>Активно использую сложные <strong>SQL-запросы, отдельные python скрипты</strong> для тестирования и оптимизации.</li>
-                            <li>Провожу <strong>код-ревью</strong> (в среднем 5–7 ревью в неделю), пишу <strong>техническую документацию</strong> для нового функционала.</li>
-                            <li>Участвую в <strong>проектировании архитектуры</strong> новых фич и рефакторинге легаси-кода.</li>
+                            <li data-ru="Разработал систему снепшотов, что позволило переиспользовать её в нескольких микросервисах, ускорило восстановление состояния после перезапуска в 3 раза и сократило дублирование кода." data-en="Developed a snapshot system that was reused across multiple microservices, accelerated state recovery after restart by 3x, and reduced code duplication."><strong>Разработал систему снепшотов</strong>, что позволило переиспользовать её в нескольких микросервисах, ускорило восстановление состояния после перезапуска <strong>в 3 раза</strong> и сократило дублирование кода.</li>
+                            <li data-ru="Спроектировал и реализовал сервис интеграции, на основе своего же boilerplate, который централизовал взаимодействие с 7 внутренними системами компании, упростив добавление новых интеграций и сократив время на их поддержку." data-en="Designed and implemented an integration service based on my own boilerplate, which centralized interaction with 7 internal company systems, simplifying the addition of new integrations and reducing maintenance time."><strong>Спроектировал и реализовал сервис интеграции</strong>, на основе своего же <strong>boilerplate</strong>, который централизовал взаимодействие с <strong>7 внутренними системами</strong> компании, упростив добавление новых интеграций и сократив время на их поддержку.</li>
+                            <li data-ru="Разработал библиотеку для генерации отчётов в форматах XLSX и ODT, чтобы унифицировать выгрузку данных из разных модулей и избавить фронтенд от сложной обработки — автоматизировал формирование документов, сократив время разработки аналогичных задач и упростив поддержку." data-en="Developed a library for generating reports in XLSX and ODT formats to unify data export from different modules and free the frontend from complex processing — automated document generation, reducing development time for similar tasks and simplifying maintenance."><strong>Разработал библиотеку для генерации отчётов в форматах XLSX и ODT</strong>, чтобы унифицировать выгрузку данных из разных модулей и избавить фронтенд от сложной обработки — автоматизировал формирование документов, сократив время разработки аналогичных задач и упростив поддержку.</li>
+                            <li data-ru="Активно использую сложные SQL-запросы, отдельные python скрипты для тестирования и оптимизации." data-en="Actively use complex SQL queries and standalone Python scripts for testing and optimization.">Активно использую сложные <strong>SQL-запросы, отдельные python скрипты</strong> для тестирования и оптимизации.</li>
+                            <li data-ru="Провожу код-ревью (в среднем 5–7 ревью в неделю), пишу техническую документацию для нового функционала." data-en="Conduct code reviews (average 5-7 reviews per week), write technical documentation for new features.">Провожу <strong>код-ревью</strong> (в среднем 5–7 ревью в неделю), пишу <strong>техническую документацию</strong> для нового функционала.</li>
+                            <li data-ru="Участвую в проектировании архитектуры новых фич и рефакторинге легаси-кода." data-en="Participate in architecture design of new features and legacy code refactoring.">Участвую в <strong>проектировании архитектуры</strong> новых фич и рефакторинге легаси-кода.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Community Lab (фриланс-проект) -->
+                <!-- Community Lab (фриланс-проект) / Community Lab (freelance project) -->
                 <div class="timeline-item">
                     <div class="item-header">
-                        <span class="item-title">Python Backend Developer (проектная работа)</span>
-                        <span class="item-date">сент. 2025 — нояб. 2025</span>
+                        <span class="item-title" data-ru="Python Backend Developer (проектная работа)" data-en="Python Backend Developer (contract)">Python Backend Developer (проектная работа)</span>
+                        <span class="item-date">Sept 2025 — Nov 2025</span>
                     </div>
-                    <div class="item-subtitle">Community Lab · удалённо (частичная занятость)</div>
+                    <div class="item-subtitle">Community Lab · remote (part-time)</div>
                     <div class="item-description">
                         <ul>
-                            <li>Спроектировал и разработал бэкенд для Telegram Mini App «Маяк»</li>
-                            <li>Оптимизировал структуру БД и запросы, что позволило обрабатывать до 1000 одновременных пользователей без деградации.</li>
-                            <li>Интегрировал платёжную систему, автоматизировал процесс обработки транзакций.</li>
-                            <li>Настроил админ-панель для управления контентом и пользователями.</li>
+                            <li data-ru="Спроектировал и разработал бэкенд для Telegram Mini App «Маяк»" data-en="Designed and developed the backend for the 'Mayak' Telegram Mini App">Спроектировал и разработал бэкенд для Telegram Mini App «Маяк»</li>
+                            <li data-ru="Оптимизировал структуру БД и запросы, что позволило обрабатывать до 1000 одновременных пользователей без деградации." data-en="Optimized database structure and queries, enabling handling of up to 1000 concurrent users without degradation.">Оптимизировал структуру БД и запросы, что позволило обрабатывать до 1000 одновременных пользователей без деградации.</li>
+                            <li data-ru="Интегрировал платёжную систему, автоматизировал процесс обработки транзакций." data-en="Integrated payment system, automated transaction processing.">Интегрировал платёжную систему, автоматизировал процесс обработки транзакций.</li>
+                            <li data-ru="Настроил админ-панель для управления контентом и пользователями." data-en="Set up admin panel for content and user management.">Настроил админ-панель для управления контентом и пользователями.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Блок дополнительной информации (soft skills, ревью и т.п.) -->
+                <!-- Блок дополнительной информации / Additional info block -->
                 <div class="extra-block">
                     <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                         <div class="extra-item">
                             <i class="fas fa-code-branch"></i>
-                            <span>Регулярное код-ревью, наставничество новых разработчиков</span>
+                            <span data-ru="Регулярное код-ревью, наставничество новых разработчиков" data-en="Regular code reviews, mentoring junior developers">Регулярное код-ревью, наставничество новых разработчиков</span>
                         </div>
                         <div class="extra-item">
                             <i class="fas fa-book"></i>
-                            <span>Ведение технической документации и написание внутренних библиотек</span>
+                            <span data-ru="Ведение технической документации и написание внутренних библиотек" data-en="Technical documentation and internal library development">Ведение технической документации и написание внутренних библиотек</span>
                         </div>
                         <div class="extra-item">
                             <i class="fas fa-users"></i>
-                            <span>Опыт работы в команде от 5 до 20 разработчиков, участие в проектировании</span>
+                            <span data-ru="Опыт работы в команде от 5 до 20 разработчиков, участие в проектировании" data-en="Experience in teams of 5-20 developers, participation in design">Опыт работы в команде от 5 до 20 разработчиков, участие в проектировании</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Формат работы -->
+                <!-- Формат работы / Work format -->
                 <div style="margin-top: 1rem; font-style: italic; opacity: 0.8;">
-                    <i class="fas fa-check-circle" style="color: #2b5a8c;"></i> Готов к удалённой работе или гибриду в Москве/МО.
+                    <i class="fas fa-check-circle" style="color: #2b5a8c;"></i> 
+                    <span data-ru="Готов к удалённой работе или гибриду в Москве/МО." data-en="Ready for remote work or hybrid in Moscow/Moscow region.">Готов к удалённой работе или гибриду в Москве/МО.</span>
                 </div>
             </div>
         </div>
 
-        <!-- Футер -->
+        <!-- Футер / Footer -->
         <div style="margin-top: 2.5rem; text-align: center; font-size: 0.9rem; opacity: 0.6; border-top: 1px solid rgba(43,90,140,0.2); padding-top: 1.5rem;">
-            <i class="fas fa-heart" style="color: #b22222;"></i> открыт к предложениям
+            <i class="fas fa-heart" style="color: #b22222;"></i> 
+            <span data-ru="открыт к предложениям" data-en="open to opportunities">открыт к предложениям</span>
         </div>
     </div>
 
     <script>
-        const toggle = document.getElementById('themeToggle');
+        // Переключение темы
+        const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
-        const icon = toggle.querySelector('i');
+        const themeIcon = themeToggle.querySelector('i');
 
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             body.classList.add('dark');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
         }
 
-        toggle.addEventListener('click', () => {
+        themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark');
             if (body.classList.contains('dark')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
                 localStorage.setItem('theme', 'dark');
             } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
                 localStorage.setItem('theme', 'light');
             }
+        });
+
+        // Переключение языка
+        const langToggle = document.getElementById('langToggle');
+        const langIcon = langToggle.querySelector('i');
+        
+        // Определяем сохранённый язык или русский по умолчанию
+        let currentLang = localStorage.getItem('language') || 'ru';
+        
+        // Функция переключения языка
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            
+            // Обновляем иконку (можно менять на что-то другое, но пока оставим)
+            if (lang === 'en') {
+                langIcon.style.opacity = '0.8';
+            } else {
+                langIcon.style.opacity = '1';
+            }
+            
+            // Перебираем все элементы с атрибутами data-ru и data-en
+            document.querySelectorAll('[data-ru][data-en]').forEach(el => {
+                if (lang === 'en' && el.dataset.en) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = el.dataset.en;
+                    } else {
+                        el.textContent = el.dataset.en;
+                    }
+                } else if (lang === 'ru' && el.dataset.ru) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = el.dataset.ru;
+                    } else {
+                        el.textContent = el.dataset.ru;
+                    }
+                }
+            });
+        }
+        
+        // Инициализация языка
+        setLanguage(currentLang);
+        
+        // Обработчик клика по кнопке языка
+        langToggle.addEventListener('click', () => {
+            const newLang = currentLang === 'ru' ? 'en' : 'ru';
+            setLanguage(newLang);
         });
     </script>
 </body>
