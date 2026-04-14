@@ -3,733 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kirill Dolgoruchenko · Middle Python Backend Developer</title>
+    <title>Кирилл Долгорученко · Python Backend Engineer | System Design | Integrations</title>
+    <!-- Современные шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Светлая тема (по умолчанию) */
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(145deg, #f6f8fc 0%, #e9eef4 100%);
-            color: #1e2b3c;
-            line-height: 1.5;
-            padding: 2rem 1rem;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .resume-card {
-            max-width: 1000px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        /* Тёмная тема */
-        body.dark {
-            background: linear-gradient(145deg, #121826 0%, #1e2538 100%);
-            color: #e0e7ff;
-        }
-
-        body.dark .resume-card {
-            background: rgba(20, 28, 45, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-color: rgba(74, 108, 247, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 10, 30, 0.8);
-        }
-
-        body.dark .avatar {
-            background: linear-gradient(135deg, #3b5b9b, #1f3a6b);
-            border-color: #2d3e6b;
-        }
-
-        body.dark .title h1 {
-            color: #f0f4ff;
-        }
-
-        body.dark .title .subhead,
-        body.dark .contact-item,
-        body.dark .item-title,
-        body.dark .section-title {
-            color: #cfdcff;
-        }
-
-        body.dark .contact-item i,
-        body.dark .section-title i {
-            color: #6d94f0;
-        }
-
-        body.dark .skill-tag {
-            background: #1e293b;
-            color: #b9d0ff;
-            border-color: #3b4e7a;
-        }
-
-        body.dark .skill-tag:hover {
-            background: #3b5b9b;
-            color: white;
-            border-color: #5a7ed0;
-        }
-
-        body.dark .project-item {
-            background: #1b2335;
-            border-color: #2e3e5a;
-        }
-
-        body.dark .item-description {
-            color: #b0c2e0;
-            border-left-color: #5a7ed0;
-        }
-
-        body.dark .item-date {
-            background: rgba(90, 126, 208, 0.15);
-            color: #b0ccff;
-        }
-
-        body.dark .contact-bar {
-            border-top-color: rgba(90, 126, 208, 0.3);
-            border-bottom-color: rgba(90, 126, 208, 0.3);
-        }
-
-        /* Контейнер для кнопок управления */
-        .controls {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
-        }
-
-        /* Кнопки переключения темы и языка */
-        .theme-toggle, .lang-toggle {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(8px);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: 0.2s;
-            font-size: 1.3rem;
-            color: #1e2b3c;
-        }
-
-        body.dark .theme-toggle,
-        body.dark .lang-toggle {
-            background: rgba(30, 40, 60, 0.5);
-            color: #ffdb70;
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .theme-toggle:hover,
-        .lang-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        /* Шапка */
-        .header {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #2b5a8c, #1e3a5f);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            font-weight: 600;
-            box-shadow: 0 10px 20px -5px rgba(0, 50, 100, 0.3);
-            border: 4px solid white;
-            overflow: hidden;
-        }
-        
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .title h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #0b1a2a;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.25rem;
-        }
-
-        .title .subhead {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #2c5779;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .title .subhead i {
-            font-size: 1rem;
-            color: #3a6b92;
-        }
-
-        .contact-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin: 1.5rem 0 2rem;
-            padding: 1.25rem 0;
-            border-top: 2px solid rgba(43, 90, 140, 0.2);
-            border-bottom: 2px solid rgba(43, 90, 140, 0.2);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: #1e3a5f;
-            font-weight: 500;
-        }
-
-        .contact-item i {
-            width: 1.5rem;
-            color: #2b5a8c;
-            font-size: 1.2rem;
-        }
-
-        .contact-item a {
-            color: inherit;
-            text-decoration: none;
-            border-bottom: 1px dotted transparent;
-            transition: border-color 0.2s;
-        }
-
-        .contact-item a:hover {
-            border-bottom-color: #2b5a8c;
-        }
-
-        /* Сетка для двух колонок */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #0b1a2a;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .section-title i {
-            color: #2b5a8c;
-            font-size: 1.4rem;
-        }
-
-        /* Навыки */
-        .skills-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .skills-group h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2b5a8c;
-            margin-bottom: 0.75rem;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-tag {
-            background: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(43, 90, 140, 0.15);
-            transition: all 0.2s;
-            color: #1e3a5f;
-        }
-
-        .skill-tag:hover {
-            background: #2b5a8c;
-            color: white;
-            border-color: #2b5a8c;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(43, 90, 140, 0.2);
-        }
-
-        /* Опыт */
-        .timeline-item {
-            margin-bottom: 2rem;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .item-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #0b1a2a;
-        }
-
-        .item-subtitle {
-            font-weight: 500;
-            color: #2b5a8c;
-            margin-bottom: 0.2rem;
-        }
-
-        .item-date {
-            font-size: 0.9rem;
-            background: rgba(43, 90, 140, 0.08);
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            color: #1e3a5f;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .item-description {
-            color: #2d4055;
-            font-size: 0.95rem;
-            margin-top: 0.5rem;
-            padding-left: 0.5rem;
-            border-left: 3px solid #2b5a8c;
-        }
-
-        .item-description ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .item-description li {
-            margin-bottom: 0.5rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .item-description li:before {
-            content: "▹";
-            position: absolute;
-            left: 0;
-            color: #2b5a8c;
-        }
-
-        /* Дополнительно */
-        .extra-block {
-            margin-top: 2rem;
-            background: rgba(43, 90, 140, 0.05);
-            border-radius: 1rem;
-            padding: 1.2rem;
-        }
-
-        .extra-item {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .extra-item i {
-            color: #2b5a8c;
-            font-size: 1.2rem;
-            width: 1.8rem;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 700px) {
-            .resume-card {
-                padding: 1.5rem;
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .header {
-                flex-direction: column;
-                text-align: center;
-            }
-            .contact-bar {
-                justify-content: center;
-            }
-            .title .subhead {
-                justify-content: center;
-            }
-            .controls {
-                top: 10px;
-                right: 10px;
-            }
-        }
-
-        @media (max-width: 450px) {
-            .contact-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-        
-        /* Дополнительные улучшения для очень маленьких экранов */
-        @media (max-width: 400px) {
-            .resume-card {
-                padding: 1.2rem;
-            }
-            .avatar {
-                width: 100px;
-                height: 100px;
-                font-size: 2.5rem;
-            }
-            .title h1 {
-                font-size: 2rem;
-            }
-            .title .subhead {
-                font-size: 1rem;
-            }
-            .contact-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.8rem;
-            }
-            .section-title {
-                font-size: 1.3rem;
-            }
-            .skill-tag {
-                padding: 0.4rem 1rem;
-                font-size: 0.85rem;
-            }
-            .item-title {
-                font-size: 1.1rem;
-            }
-            .item-date {
-                font-size: 0.8rem;
-                padding: 0.2rem 0.8rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="controls">
-        <div class="lang-toggle" id="langToggle" title="Switch language / Переключить язык">
+        <div class="lang-toggle" id="langToggle" title="Switch language / Переключить язык" aria-label="Переключить язык">
             <i class="fas fa-language"></i>
         </div>
-        <div class="theme-toggle" id="themeToggle" title="Переключить тему / Toggle theme">
+        <div class="theme-toggle" id="themeToggle" title="Переключить тему / Toggle theme" aria-label="Переключить тему">
             <i class="fas fa-moon"></i>
         </div>
     </div>
 
-    <div class="resume-card">
-        <!-- ШАПКА / HEADER -->
-        <div class="header">
-            <div class="avatar">
-                <img src="https://i.ibb.co/cnn6V4q/edited-image-1-6.png" alt="Kirill Dolgoruchenko">
-            </div>
-            <div class="title">
+    <div class="resume">
+        <!-- Левая колонка (тёмная / контрастная) -->
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="avatar">
+                    <img src="https://i.ibb.co/cnn6V4q/edited-image-1-6.png" alt="Кирилл Долгорученко">
+                </div>
                 <h1 data-ru="Кирилл Долгорученко" data-en="Kirill Dolgoruchenko">Кирилл Долгорученко</h1>
-                <div class="subhead">
-                    <i class="fas fa-code"></i> 
-                    <span data-ru="Middle Python Backend Developer" data-en="Middle Python Backend Developer">Middle Python Backend Developer</span>
-                    <i class="fas fa-map-pin" style="margin-left: 0.8rem;"></i>
-                    <span data-ru="Москва / МО / удалёнка / гибрид" data-en="Moscow / Remote / Hybrid">Москва / МО / удалёнка / гибрид</span>
+                <div class="badge">
+                    <i class="fas fa-code"></i>
+                    <span data-ru="Python Backend Engineer" data-en="Python Backend Engineer">Python Backend Engineer | System Design | Integrations</span>
                 </div>
             </div>
-        </div>
 
-        <!-- КОНТАКТЫ / CONTACTS -->
-        <div class="contact-bar">
-            <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:knxtex@gmail.com">knxtex@gmail.com</a></div>
-            <div class="contact-item"><i class="fas fa-phone-alt"></i> <a href="tel:+79995555798">+7 (999) 555-57-98</a></div>
-            <div class="contact-item"><i class="fab fa-telegram"></i> <a href="https://t.me/kerxl" target="_blank">@kerxl</a></div>
-            <div class="contact-item"><i class="fab fa-github"></i> <a href="#" target="_blank">github.com/kerxl</a></div>
-        </div>
+            <div class="contact-info">
+                <h3><i class="fas fa-address-card"></i> <span data-ru="Контакты" data-en="Contact">Контакты</span></h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:knxtex@gmail.com">knxtex@gmail.com</a></li>
+                    <li><i class="fas fa-phone-alt"></i> <a href="tel:+79995555798">+7 (999) 555-57-98</a></li>
+                    <li><i class="fab fa-telegram"></i> <a href="https://t.me/kerxl" target="_blank" rel="noopener">@kerxl</a></li>
+                    <li><i class="fab fa-github"></i> <a href="https://github.com/kerxl" target="_blank" rel="noopener">github.com/kerxl</a></li>
+                    <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/kerxl-6303aa3bb" target="_blank" rel="noopener">linkedin/kerxl</a></li>
+                </ul>
+            </div>
 
-        <!-- ПРОФИЛЬ / PROFILE -->
-        <div style="margin-bottom: 2rem;">
-            <div class="section-title"><i class="fas fa-user"></i> <span data-ru="О себе" data-en="About me">О себе</span></div>
-            <p style="font-size: 1rem;" data-ru="Backend-разработчик с 4-летним опытом создания и масштабирования сложных, с архитектурной точки зрения, систем на Python (Flask, SQLAlchemy). В своей работе реализую полный цикл: от проектирования на основе ТЗ до реализации и тестирования. Специализируюсь на проектировании интеграционных решений, оптимизации производительности и написании чистого, тестируемого кода. Регулярно провожу код-ревью, документирую архитектуру, разрабатываю внутренние библиотеки. Ищу команду, где ценят инженерную культуру и совместное развитие." data-en="Backend developer with 4 years of experience creating and scaling architecturally complex systems in Python (Flask, SQLAlchemy). I handle the full development cycle: from technical specification design to implementation and testing. I specialize in designing integration solutions, performance optimization, and writing clean, testable code. I regularly conduct code reviews, document architecture, and develop internal libraries. I'm looking for a team that values engineering culture and collaborative development.">
-                Backend-разработчик с 4-летним опытом создания и масштабирования сложных, с архитектурной точки зрения, систем на Python (Flask, SQLAlchemy). В своей работе реализую полный цикл: от проектирования на основе ТЗ до реализации и тестирования. Специализируюсь на проектировании интеграционных решений, оптимизации производительности и написании чистого, тестируемого кода. Регулярно провожу код-ревью, документирую архитектуру, разрабатываю внутренние библиотеки. Ищу команду, где ценят инженерную культуру и совместное развитие.
-            </p>
-        </div>
+            <div class="skills-section">
+                <h3><i class="fas fa-code-branch"></i> <span data-ru="Технологии" data-en="Tech Stack">Технологии</span></h3>
+                <div class="skill-group">
+                    <h4 data-ru="Языки" data-en="Languages">Языки</h4>
+                    <div class="skill-chips">
+                        <span class="chip">Python</span>
+                        <span class="chip">C</span>
+                        <span class="chip">Bash</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4 data-ru="Фреймворки" data-en="Frameworks">Фреймворки</h4>
+                    <div class="skill-chips">
+                        <span class="chip">Flask</span>
+                        <span class="chip">FastAPI</span>
+                        <span class="chip">SQLAlchemy</span>
+                        <span class="chip">Alembic</span>
+                        <span class="chip">pytest</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4 data-ru="Данные" data-en="Data">Данные</h4>
+                    <div class="skill-chips">
+                        <span class="chip">PostgreSQL</span>
+                        <span class="chip">RabbitMQ</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4 data-ru="Инструменты" data-en="Tools">Инструменты</h4>
+                    <div class="skill-chips">
+                        <span class="chip">Git</span>
+                        <span class="chip">Linux</span>
+                        <span class="chip">Docker</span>
+                        <span class="chip">CI/CD</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4 data-ru="Архитектура" data-en="Architecture & Engineering">Architecture & Engineering</h4>
+                    <div class="skill-chips">
+                        <span class="chip">REST API</span>
+                        <span class="chip">Microservices</span>
+                        <span class="chip">System integrations</span>
+                        <span class="chip">Performance optimization</span>
+                        <span class="chip">Code review & mentoring</span>
+                        <span class="chip">Technical documentation</span>
+                    </div>
+                </div>
+            </div>
 
-        <!-- ДВЕ КОЛОНКИ: Навыки + Опыт / TWO COLUMNS: Skills + Experience -->
-        <div class="grid-2">
-            <!-- Левая колонка: Навыки / Left column: Skills -->
-            <div>
-                <div class="section-title"><i class="fas fa-cogs"></i> <span data-ru="Навыки" data-en="Skills">Навыки</span></div>
+            <div class="education">
+                <h3><i class="fas fa-graduation-cap"></i> <span data-ru="Образование" data-en="Education">Образование</span></h3>
+                <div class="edu-item">
+                    <div class="edu-title" data-ru="ККМТ г. Королев" data-en="KKMT, Korolev">ККМТ г. Королев</div>
+                    <div class="edu-meta">
+                        <span class="edu-degree" data-ru="Техник-программист" data-en="Software Technician">Техник-программист</span>
+                        <span class="edu-date">2016 – 2020</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="languages">
+                <h3><i class="fas fa-globe"></i> <span data-ru="Языки" data-en="Languages">Языки</span></h3>
+                <div class="lang-item">
+                    <span data-ru="Английский" data-en="English">Английский</span>
+                    <span class="lang-level">A2 (technical reading & writing)</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Правая колонка (светлая, основное содержание) -->
+        <main class="content">
+            <section class="about">
+                <h2><span class="accent-line"></span><span data-ru="О себе" data-en="About">О себе</span></h2>
+                <p data-ru="Backend-разработчик с 4+ годами опыта проектирования и развития backend-систем на Python. Специализируюсь на интеграционных сервисах, архитектуре приложений и оптимизации производительности. Работал над системами с несколькими микросервисами и высокой нагрузкой, реализуя полный цикл разработки — от проектирования и декомпозиции задач до внедрения и поддержки в production.
+                            Регулярно провожу код-ревью, участвую в архитектурных решениях, разрабатываю внутренние библиотеки и инженерные стандарты команды. Ориентирован на создание поддерживаемых систем и снижение технического долга." 
+                   data-en="Backend Engineer with 4+ years of experience designing and evolving Python backend systems. Specialized in integration services, application architecture, and performance optimization. Experienced in working with multi-service environments and production systems, covering the full development lifecycle — from system design and task decomposition to implementation and production support.
+                            Regularly conduct code reviews, contribute to architectural decisions, and develop internal libraries and engineering standards. Focused on building maintainable systems and reducing technical debt.">
+                    Backend-разработчик с 4+ годами опыта проектирования и развития backend-систем на Python. Специализируюсь на интеграционных сервисах, архитектуре приложений и оптимизации производительности. Работал над системами с несколькими микросервисами и высокой нагрузкой, реализуя полный цикл разработки — от проектирования и декомпозиции задач до внедрения и поддержки в production.
+                    Регулярно провожу код-ревью, участвую в архитектурных решениях, разрабатываю внутренние библиотеки и инженерные стандарты команды. Ориентирован на создание поддерживаемых систем и снижение технического долга.
+                </p>
+            </section>
+            <section class="experience">
+                <h2><span class="accent-line"></span><span data-ru="Опыт работы" data-en="Experience">Опыт работы</span></h2>
                 
-                <div class="skills-group">
-                    <h3 data-ru="Языки" data-en="Languages">Языки</h3>
-                    <div class="skills">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Bash</span>
-                    </div>
-                </div>
-
-                <div class="skills-group">
-                    <h3 data-ru="Фреймворки и библиотеки" data-en="Frameworks & Libraries">Фреймворки и библиотеки</h3>
-                    <div class="skills">
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">SQLAlchemy</span>
-                        <span class="skill-tag">Alembic</span>
-                        <span class="skill-tag">pytest</span>
-                    </div>
-                </div>
-
-                <div class="skills-group">
-                    <h3 data-ru="Базы данных и брокеры сообщений" data-en="Databases & Message brokers">Базы данных и брокеры сообщений</h3>
-                    <div class="skills">
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">RabbitMQ</span>
-                    </div>
-                </div>
-
-                <div class="skills-group">
-                    <h3 data-ru="Инструменты и другое" data-en="Tools & Other">Инструменты и другое</h3>
-                    <div class="skills">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Docker (basic)</span>
-                        <span class="skill-tag">CI/CD (basic)</span>
-                        <span class="skill-tag" data-ru="Разработка библиотек" data-en="Library development">Разработка библиотек</span>
-                        <span class="skill-tag" data-ru="Код-ревью" data-en="Code review">Код-ревью</span>
-                        <span class="skill-tag" data-ru="Техническая документация" data-en="Technical documentation">Техническая документация</span>
-                    </div>
-                </div>
-
-                <!-- Образование / Education -->
-                <div style="margin-top: 2rem;">
-                    <div class="section-title"><i class="fas fa-graduation-cap"></i> <span data-ru="Образование" data-en="Education">Образование</span></div>
-                    <div class="timeline-item">
-                        <div class="item-header">
-                            <span class="item-title" data-ru="ККМТ г. Королев" data-en="KKMT, Korolev">ККМТ г. Королев</span>
-                            <span class="item-date">2016 – 2020</span>
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div>
+                            <h3 data-ru="Backend Engineer (Python)" data-en="Backend Engineer (Python)">Backend Engineer (Python)</h3>
+                            <div class="company">K-Technologies · Moscow</div>
                         </div>
-                        <div class="item-subtitle" data-ru="Техник-программист (специалист)" data-en="Software Technician (Specialist)">Техник-программист (специалист)</div>
+                        <div class="exp-date">2022 — наст. время</div>
                     </div>
-                </div>
-
-                <!-- Языки / Languages -->
-                <div style="margin-top: 1.5rem;">
-                    <div class="section-title"><i class="fas fa-language"></i> <span data-ru="Языки" data-en="Languages">Языки</span></div>
-                    <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(43,90,140,0.2); padding: 0.5rem 0;">
-                        <span data-ru="Английский" data-en="English">Английский</span>
-                        <span style="color: #2b5a8c;">A2 (Pre‑Intermediate)</span>
-                    </div>
-                </div>
-                
-                <!-- Ключевые компетенции / Key competencies -->
-                <div style="margin-top: 2rem;">
-                    <div class="section-title"><i class="fas fa-star"></i> <span data-ru="Ключевые компетенции" data-en="Key competencies">Ключевые компетенции</span></div>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.7rem; display: flex; gap: 0.5rem;">
-                            <i class="fas fa-check-circle" style="color: #2b5a8c; width: 1.5rem;"></i>
-                            <span data-ru="Проектирование архитектуры интеграционных решений" data-en="Integration solutions architecture design">Проектирование архитектуры интеграционных решений</span>
-                        </li>
-                        <li style="margin-bottom: 0.7rem; display: flex; gap: 0.5rem;">
-                            <i class="fas fa-check-circle" style="color: #2b5a8c; width: 1.5rem;"></i>
-                            <span data-ru="Разработка внутренних библиотек и инструментов" data-en="Internal libraries and tools development">Разработка внутренних библиотек и инструментов</span>
-                        </li>
-                        <li style="margin-bottom: 0.7rem; display: flex; gap: 0.5rem;">
-                            <i class="fas fa-check-circle" style="color: #2b5a8c; width: 1.5rem;"></i>
-                            <span data-ru="Оптимизация производительности и рефакторинг" data-en="Performance optimization and refactoring">Оптимизация производительности и рефакторинг</span>
-                        </li>
-                        <li style="margin-bottom: 0.7rem; display: flex; gap: 0.5rem;">
-                            <i class="fas fa-check-circle" style="color: #2b5a8c; width: 1.5rem;"></i>
-                            <span data-ru="Работа с legacy-кодом и его поддержка" data-en="Legacy code maintenance and support">Работа с legacy-кодом и его поддержка</span>
-                        </li>
+                    <ul class="exp-details">
+                        <li data-ru="Спроектировал и реализовал систему snapshot-восстановления состояния сервисов, сократив время recovery в 3 раза и обеспечив переиспользование решения в нескольких микросервисах." data-en="Designed and implemented a reusable snapshot-based state recovery system, reducing recovery time by 3x across multiple microservices."><strong>Система снепшотов</strong> — Спроектировал и реализовал систему snapshot-восстановления состояния сервисов, сократив время recovery в 3 раза и обеспечив переиспользование решения в нескольких микросервисах.</li>
+                        <li data-ru="Спроектировал интеграционный сервис (integration layer), централизовав взаимодействие между 7 внутренними системами и снизив сложность поддержки межсервисных интеграций." data-en="Designed an integration service acting as a centralized communication layer for 7 internal systems, simplifying cross-service integrations and maintenance."><strong>Сервис интеграции</strong> — Спроектировал интеграционный сервис (integration layer), централизовав взаимодействие между 7 внутренними системами и снизив сложность поддержки межсервисных интеграций.</li>
+                        <li data-ru="Разработал переиспользуемую библиотеку генерации XLSX/ODT отчётов, стандартизировав экспорт данных и сократив время разработки новых выгрузок." data-en="Developed a reusable XLSX/ODT reporting library, standardizing data exports and reducing development time for new reporting features."><strong>Библиотека отчётов</strong> — Разработал переиспользуемую библиотеку генерации XLSX/ODT отчётов, стандартизировав экспорт данных и сократив время разработки новых выгрузок.</li>
+                        <li data-ru="Провожу регулярные code review (5–7 в неделю), участвую в архитектурном проектировании и поддерживаю техническую документацию сервисов." data-en="Conduct regular code reviews (5–7 weekly), participate in architectural design discussions, and maintain technical documentation.">Провожу регулярные code review (5–7 в неделю), участвую в архитектурном проектировании и поддерживаю техническую документацию сервисов.</li>
                     </ul>
                 </div>
-            </div>
 
-            <!-- Правая колонка: Опыт работы / Right column: Work experience -->
-            <div>
-                <div class="section-title"><i class="fas fa-briefcase"></i> <span data-ru="Опыт работы" data-en="Work experience">Опыт работы</span></div>
-
-                <!-- К-Технологии / K-Technologies -->
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <span class="item-title" data-ru="Ведущий специалист (Python Backend)" data-en="Lead Specialist (Python Backend)">Ведущий специалист (Python Backend)</span>
-                        <span class="item-date">June 2022 — present</span>
-                    </div>
-                    <div class="item-subtitle">K-Technologies · Moscow (full-time)</div>
-                    <div class="item-description">
-                        <ul>
-                            <li data-ru="Разработал систему снепшотов, что позволило переиспользовать её в нескольких микросервисах, ускорило восстановление состояния после перезапуска в 3 раза и сократило дублирование кода." data-en="Developed a snapshot system that was reused across multiple microservices, accelerated state recovery after restart by 3x, and reduced code duplication."><strong>Разработал систему снепшотов</strong>, что позволило переиспользовать её в нескольких микросервисах, ускорило восстановление состояния после перезапуска <strong>в 3 раза</strong> и сократило дублирование кода.</li>
-                            <li data-ru="Спроектировал и реализовал сервис интеграции, на основе своего же boilerplate, который централизовал взаимодействие с 7 внутренними системами компании, упростив добавление новых интеграций и сократив время на их поддержку." data-en="Designed and implemented an integration service based on my own boilerplate, which centralized interaction with 7 internal company systems, simplifying the addition of new integrations and reducing maintenance time."><strong>Спроектировал и реализовал сервис интеграции</strong>, на основе своего же <strong>boilerplate</strong>, который централизовал взаимодействие с <strong>7 внутренними системами</strong> компании, упростив добавление новых интеграций и сократив время на их поддержку.</li>
-                            <li data-ru="Разработал библиотеку для генерации отчётов в форматах XLSX и ODT, чтобы унифицировать выгрузку данных из разных модулей и избавить фронтенд от сложной обработки — автоматизировал формирование документов, сократив время разработки аналогичных задач и упростив поддержку." data-en="Developed a library for generating reports in XLSX and ODT formats to unify data export from different modules and free the frontend from complex processing — automated document generation, reducing development time for similar tasks and simplifying maintenance."><strong>Разработал библиотеку для генерации отчётов в форматах XLSX и ODT</strong>, чтобы унифицировать выгрузку данных из разных модулей и избавить фронтенд от сложной обработки — автоматизировал формирование документов, сократив время разработки аналогичных задач и упростив поддержку.</li>
-                            <li data-ru="Активно использую сложные SQL-запросы, отдельные python скрипты для тестирования и оптимизации." data-en="Actively use complex SQL queries and standalone Python scripts for testing and optimization.">Активно использую сложные <strong>SQL-запросы, отдельные python скрипты</strong> для тестирования и оптимизации.</li>
-                            <li data-ru="Провожу код-ревью (в среднем 5–7 ревью в неделю), пишу техническую документацию для нового функционала." data-en="Conduct code reviews (average 5-7 reviews per week), write technical documentation for new features.">Провожу <strong>код-ревью</strong> (в среднем 5–7 ревью в неделю), пишу <strong>техническую документацию</strong> для нового функционала.</li>
-                            <li data-ru="Участвую в проектировании архитектуры новых фич и рефакторинге легаси-кода." data-en="Participate in architecture design of new features and legacy code refactoring.">Участвую в <strong>проектировании архитектуры</strong> новых фич и рефакторинге легаси-кода.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Community Lab (фриланс-проект) / Community Lab (freelance project) -->
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <span class="item-title" data-ru="Python Backend Developer (проектная работа)" data-en="Python Backend Developer (contract)">Python Backend Developer (проектная работа)</span>
-                        <span class="item-date">Sept 2025 — Nov 2025</span>
-                    </div>
-                    <div class="item-subtitle">Community Lab · remote (part-time)</div>
-                    <div class="item-description">
-                        <ul>
-                            <li data-ru="Спроектировал и разработал бэкенд для Telegram Mini App «Маяк»" data-en="Designed and developed the backend for the 'Mayak' Telegram Mini App">Спроектировал и разработал бэкенд для Telegram Mini App «Маяк»</li>
-                            <li data-ru="Оптимизировал структуру БД и запросы, что позволило обрабатывать до 1000 одновременных пользователей без деградации." data-en="Optimized database structure and queries, enabling handling of up to 1000 concurrent users without degradation.">Оптимизировал структуру БД и запросы, что позволило обрабатывать до 1000 одновременных пользователей без деградации.</li>
-                            <li data-ru="Интегрировал платёжную систему, автоматизировал процесс обработки транзакций." data-en="Integrated payment system, automated transaction processing.">Интегрировал платёжную систему, автоматизировал процесс обработки транзакций.</li>
-                            <li data-ru="Настроил админ-панель для управления контентом и пользователями." data-en="Set up admin panel for content and user management.">Настроил админ-панель для управления контентом и пользователями.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Блок дополнительной информации / Additional info block -->
-                <div class="extra-block">
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <div class="extra-item">
-                            <i class="fas fa-code-branch"></i>
-                            <span data-ru="Регулярное код-ревью, наставничество новых разработчиков" data-en="Regular code reviews, mentoring junior developers">Регулярное код-ревью, наставничество новых разработчиков</span>
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div>
+                            <h3 data-ru="Python Backend Engineer (Contract)" data-en="Python Backend Engineer (Contract)">Python Backend Engineer (Contract)</h3>
+                            <div class="company">Community Lab · remote</div>
                         </div>
-                        <div class="extra-item">
-                            <i class="fas fa-book"></i>
-                            <span data-ru="Ведение технической документации и написание внутренних библиотек" data-en="Technical documentation and internal library development">Ведение технической документации и написание внутренних библиотек</span>
-                        </div>
-                        <div class="extra-item">
-                            <i class="fas fa-users"></i>
-                            <span data-ru="Опыт работы в команде от 5 до 20 разработчиков, участие в проектировании" data-en="Experience in teams of 5-20 developers, participation in design">Опыт работы в команде от 5 до 20 разработчиков, участие в проектировании</span>
-                        </div>
+                        <div class="exp-date">Сент. 2025 – Нояб. 2025</div>
                     </div>
+                    <ul class="exp-details">
+                        <li data-ru="Разработал backend Telegram Mini App «Маяк» с нуля: проектирование API, бизнес-логики и структуры БД." data-en="Developed backend for Telegram Mini App “Mayak” from scratch, including API design, business logic, and database architecture.">Разработал backend Telegram Mini App «Маяк» с нуля: проектирование API, бизнес-логики и структуры БД.</li>
+                        <li data-ru="Оптимизировал структуру БД и SQL-запросы для стабильной работы при высокой конкурентной нагрузке (~1000 одновременных пользователей)." data-en="Optimized database schema and queries to support high concurrency (~1000 simultaneous users).">Оптимизировал структуру БД и SQL-запросы для стабильной работы при высокой конкурентной нагрузке (~1000 одновременных пользователей).</li>
+                        <li data-ru="Интегрировал платёжную систему и реализовал административные инструменты управления." data-en="Integrated payment system and implemented administrative management tools.">Интегрировал платёжную систему и реализовал административные инструменты управления.</li>
+                    </ul>
                 </div>
-
-                <!-- Формат работы / Work format -->
-                <div style="margin-top: 1rem; font-style: italic; opacity: 0.8;">
-                    <i class="fas fa-check-circle" style="color: #2b5a8c;"></i> 
-                    <span data-ru="Готов к удалённой работе или гибриду в Москве/МО." data-en="Ready for remote work or hybrid in Moscow/Moscow region.">Готов к удалённой работе или гибриду в Москве/МО.</span>
+            </section>
+            <section class="additional">
+                <div class="highlight">
+                    <i class="fas fa-check-circle"></i>
+                    <span data-ru="Регулярное код-ревью, наставничество" data-en="Regular code reviews, mentoring">Регулярное код-ревью, наставничество</span>
                 </div>
-            </div>
-        </div>
-
-        <!-- Футер / Footer -->
-        <div style="margin-top: 2.5rem; text-align: center; font-size: 0.9rem; opacity: 0.6; border-top: 1px solid rgba(43,90,140,0.2); padding-top: 1.5rem;">
-            <i class="fas fa-heart" style="color: #b22222;"></i> 
-            <span data-ru="открыт к предложениям" data-en="open to opportunities">открыт к предложениям</span>
-        </div>
+                <div class="highlight">
+                    <i class="fas fa-book-open"></i>
+                    <span data-ru="Внутренние библиотеки и документация" data-en="Internal libraries and documentation">Внутренние библиотеки и документация</span>
+                </div>
+                <div class="highlight">
+                    <i class="fas fa-users"></i>
+                    <span data-ru="Опыт в командах 5–20 разработчиков" data-en="Experience in teams of 5-20 developers">Опыт в командах 5–20 разработчиков</span>
+                </div>
+                <div class="availability">
+                    <i class="fas fa-rocket"></i>
+                    <span data-ru="Открыт к предложениям · удалённо / гибрид (Москва)" data-en="Open to offers · remote / hybrid (Moscow)">Открыт к предложениям · удалённо / гибрид (Москва)</span>
+                </div>
+            </section>
+        </main>
     </div>
 
     <script>
-        // Переключение темы
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const themeIcon = themeToggle.querySelector('i');
+        (function() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const langToggle = document.getElementById('langToggle');
 
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            if (body.classList.contains('dark')) {
+            // Тема
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'light');
             }
-        });
-
-        // Переключение языка
-        const langToggle = document.getElementById('langToggle');
-        const langIcon = langToggle.querySelector('i');
-        
-        // Определяем сохранённый язык или русский по умолчанию
-        let currentLang = localStorage.getItem('language') || 'ru';
-        
-        // Функция переключения языка
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('language', lang);
-            
-            // Обновляем иконку (можно менять на что-то другое, но пока оставим)
-            if (lang === 'en') {
-                langIcon.style.opacity = '0.8';
-            } else {
-                langIcon.style.opacity = '1';
-            }
-            
-            // Перебираем все элементы с атрибутами data-ru и data-en
-            document.querySelectorAll('[data-ru][data-en]').forEach(el => {
-                if (lang === 'en' && el.dataset.en) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = el.dataset.en;
-                    } else {
-                        el.textContent = el.dataset.en;
-                    }
-                } else if (lang === 'ru' && el.dataset.ru) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = el.dataset.ru;
-                    } else {
-                        el.textContent = el.dataset.ru;
-                    }
-                }
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-theme');
+                const isDark = body.classList.contains('dark-theme');
+                themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
             });
-        }
-        
-        // Инициализация языка
-        setLanguage(currentLang);
-        
-        // Обработчик клика по кнопке языка
-        langToggle.addEventListener('click', () => {
-            const newLang = currentLang === 'ru' ? 'en' : 'ru';
-            setLanguage(newLang);
-        });
+
+            // Язык с плавной сменой
+            let currentLang = localStorage.getItem('language') || 'ru';
+            
+            function setLanguage(lang) {
+                const elements = document.querySelectorAll('[data-ru][data-en]');
+                elements.forEach(el => {
+                    // Добавляем класс для анимации
+                    el.classList.add('text-fade', 'active');
+                    setTimeout(() => {
+                        // Меняем текст
+                        const newText = lang === 'en' ? el.dataset.en : el.dataset.ru;
+                        if (newText !== undefined) {
+                            // Если внутри есть HTML (например <strong>), используем innerHTML,
+                            // иначе textContent для безопасности.
+                            if (newText.includes('<')) {
+                                el.innerHTML = newText;
+                            } else {
+                                el.textContent = newText;
+                            }
+                        }
+                        el.classList.remove('active');
+                    }, 120);
+                });
+                currentLang = lang;
+                localStorage.setItem('language', lang);
+            }
+
+            setLanguage(currentLang);
+            langToggle.addEventListener('click', () => {
+                setLanguage(currentLang === 'ru' ? 'en' : 'ru');
+            });
+        })();
     </script>
 </body>
 </html>
