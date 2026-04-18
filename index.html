@@ -1,240 +1,351 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кирилл Долгорученко · Python Backend Engineer | System Design | Integrations</title>
-    <!-- Современные шрифты -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="media/favicon.ico" />
+    <title>Резюме | Долгорученко К. А</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-current-lang="en">
+
     <div class="controls">
-        <div class="lang-toggle" id="langToggle" title="Switch language / Переключить язык" aria-label="Переключить язык">
-            <i class="fas fa-language"></i>
-        </div>
-        <div class="theme-toggle" id="themeToggle" title="Переключить тему / Toggle theme" aria-label="Переключить тему">
-            <i class="fas fa-moon"></i>
-        </div>
+        <button class="control-btn active" id="lang-en-btn" onclick="setLang('en')">EN</button>
+        <button class="control-btn" id="lang-ru-btn" onclick="setLang('ru')">RU</button>
+        <button class="control-btn" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+        <button class="control-btn" onclick="window.print()">⬇ PDF</button>
     </div>
 
-    <div class="resume">
-        <!-- Левая колонка (тёмная / контрастная) -->
-        <aside class="sidebar">
-            <div class="profile">
-                <div class="avatar">
-                    <img src="https://i.ibb.co/cnn6V4q/edited-image-1-6.png" alt="Кирилл Долгорученко">
-                </div>
-                <h1 data-ru="Кирилл Долгорученко" data-en="Kirill Dolgoruchenko">Кирилл Долгорученко</h1>
-                <div class="badge">
-                    <i class="fas fa-code"></i>
-                    <span data-ru="Python Backend Engineer" data-en="Python Backend Engineer">Python Backend Engineer | System Design | Integrations</span>
-                </div>
-            </div>
+    <div class="container">
 
-            <div class="contact-info">
-                <h3><i class="fas fa-address-card"></i> <span data-ru="Контакты" data-en="Contact">Контакты</span></h3>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:knxtex@gmail.com">knxtex@gmail.com</a></li>
-                    <li><i class="fas fa-phone-alt"></i> <a href="tel:+79995555798">+7 (999) 555-57-98</a></li>
-                    <li><i class="fab fa-telegram"></i> <a href="https://t.me/kerxl" target="_blank" rel="noopener">@kerxl</a></li>
-                    <li><i class="fab fa-github"></i> <a href="https://github.com/kerxl" target="_blank" rel="noopener">github.com/kerxl</a></li>
-                    <li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/kerxl-6303aa3bb" target="_blank" rel="noopener">linkedin/kerxl</a></li>
-                </ul>
+        <!-- 1. Шапка -->
+        <div class="card card-profile">
+            <div class="profile-photo-container">
+                <img src="media/photo.jpg" class="profile-photo" alt="Photo">
             </div>
-
-            <div class="skills-section">
-                <h3><i class="fas fa-code-branch"></i> <span data-ru="Технологии" data-en="Tech Stack">Технологии</span></h3>
-                <div class="skill-group">
-                    <h4 data-ru="Языки" data-en="Languages">Языки</h4>
-                    <div class="skill-chips">
-                        <span class="chip">Python</span>
-                        <span class="chip">C</span>
-                        <span class="chip">Bash</span>
-                    </div>
+            <div class="profile-info">
+                <h1 class="profile-name">
+                    <span data-lang="en">Kirill Dolgoruchenko</span>
+                    <span data-lang="ru">Кирилл Долгорученко</span>
+                </h1>
+                <div class="profile-role">
+                    <span data-lang="en">Backend Python Engineer</span>
+                    <span data-lang="ru">Backend Python Engineer</span>
                 </div>
-                <div class="skill-group">
-                    <h4 data-ru="Фреймворки" data-en="Frameworks">Фреймворки</h4>
-                    <div class="skill-chips">
-                        <span class="chip">Flask</span>
-                        <span class="chip">FastAPI</span>
-                        <span class="chip">SQLAlchemy</span>
-                        <span class="chip">Alembic</span>
-                        <span class="chip">pytest</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4 data-ru="Данные" data-en="Data">Данные</h4>
-                    <div class="skill-chips">
-                        <span class="chip">PostgreSQL</span>
-                        <span class="chip">RabbitMQ</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4 data-ru="Инструменты" data-en="Tools">Инструменты</h4>
-                    <div class="skill-chips">
-                        <span class="chip">Git</span>
-                        <span class="chip">Linux</span>
-                        <span class="chip">Docker</span>
-                        <span class="chip">CI/CD</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4 data-ru="Архитектура" data-en="Architecture & Engineering">Architecture & Engineering</h4>
-                    <div class="skill-chips">
-                        <span class="chip">REST API</span>
-                        <span class="chip">Microservices</span>
-                        <span class="chip">System integrations</span>
-                        <span class="chip">Performance optimization</span>
-                        <span class="chip">Code review & mentoring</span>
-                        <span class="chip">Technical documentation</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="education">
-                <h3><i class="fas fa-graduation-cap"></i> <span data-ru="Образование" data-en="Education">Образование</span></h3>
-                <div class="edu-item">
-                    <div class="edu-title" data-ru="ККМТ г. Королев" data-en="KKMT, Korolev">ККМТ г. Королев</div>
-                    <div class="edu-meta">
-                        <span class="edu-degree" data-ru="Техник-программист" data-en="Software Technician">Техник-программист</span>
-                        <span class="edu-date">2016 – 2020</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="languages">
-                <h3><i class="fas fa-globe"></i> <span data-ru="Языки" data-en="Languages">Языки</span></h3>
-                <div class="lang-item">
-                    <span data-ru="Английский" data-en="English">Английский</span>
-                    <span class="lang-level">B1 (technical reading & writing)</span>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Правая колонка (светлая, основное содержание) -->
-        <main class="content">
-            <section class="about">
-                <h2><span class="accent-line"></span><span data-ru="О себе" data-en="About">О себе</span></h2>
-                <p data-ru="Backend-разработчик с 4+ годами опыта проектирования и развития backend-систем на Python. Специализируюсь на интеграционных сервисах, архитектуре приложений и оптимизации производительности. Работал над системами с несколькими микросервисами и высокой нагрузкой, реализуя полный цикл разработки — от проектирования и декомпозиции задач до внедрения и поддержки в production.
-                            Регулярно провожу код-ревью, участвую в архитектурных решениях, разрабатываю внутренние библиотеки и инженерные стандарты команды. Ориентирован на создание поддерживаемых систем и снижение технического долга." 
-                   data-en="Backend Engineer with 4+ years of experience designing and evolving Python backend systems. Specialized in integration services, application architecture, and performance optimization. Experienced in working with multi-service environments and production systems, covering the full development lifecycle — from system design and task decomposition to implementation and production support.
-                            Regularly conduct code reviews, contribute to architectural decisions, and develop internal libraries and engineering standards. Focused on building maintainable systems and reducing technical debt.">
-                    Backend-разработчик с 4+ годами опыта проектирования и развития backend-систем на Python. Специализируюсь на интеграционных сервисах, архитектуре приложений и оптимизации производительности. Работал над системами с несколькими микросервисами и высокой нагрузкой, реализуя полный цикл разработки — от проектирования и декомпозиции задач до внедрения и поддержки в production.
-                    Регулярно провожу код-ревью, участвую в архитектурных решениях, разрабатываю внутренние библиотеки и инженерные стандарты команды. Ориентирован на создание поддерживаемых систем и снижение технического долга.
+                <p style="margin-top: 15px;">
+                    <span data-lang="en">Backend engineer focused on reliability, detail, scalability and integrability. I optimize bottlenecks in architecture. My approach to work combines technical depth with pragmatism: I deliver working solutions on time, while systematically reducing the technical debt. I understand and accept responsibility in the full development cycle and implement engineering standards that prevent degradation of architecture. I develop my skills, abilities and knowledge in a concerted way.</span>
+                    <span data-lang="ru">Backend-инженер, фокусирующийся на надежности, детализации, масштабируемости и интегрируемости. Оптимизирую узкие места в архитектуре. Мой подход сочетает техническую глубину с прагматизмом: я сдаю работающие решения в срок, при этом системно снижаю технический долг. Владею полным циклом разработки и внедряю инженерные стандарты, предотвращающие деградацию архитектуры. Планомерно развиваю свои навыки, умения и знания.</span>
                 </p>
-            </section>
-            <section class="experience">
-                <h2><span class="accent-line"></span><span data-ru="Опыт работы" data-en="Experience">Опыт работы</span></h2>
-                
-                <div class="exp-card">
-                    <div class="exp-header">
-                        <div>
-                            <h3 data-ru="Backend Engineer (Python)" data-en="Backend Engineer (Python)">Backend Engineer (Python)</h3>
-                            <div class="company">K-Technologies · Moscow</div>
-                        </div>
-                        <div class="exp-date">2022 — наст. время</div>
-                    </div>
-                    <ul class="exp-details">
-                        <li data-ru="Спроектировал и реализовал систему snapshot-восстановления состояния сервисов, сократив время recovery в 3 раза и обеспечив переиспользование решения в нескольких микросервисах." data-en="Designed and implemented a reusable snapshot-based state recovery system, reducing recovery time by 3x across multiple microservices."><strong>Система снепшотов</strong> — Спроектировал и реализовал систему snapshot-восстановления состояния сервисов, сократив время recovery в 3 раза и обеспечив переиспользование решения в нескольких микросервисах.</li>
-                        <li data-ru="Спроектировал интеграционный сервис (integration layer), централизовав взаимодействие между 7 внутренними системами и снизив сложность поддержки межсервисных интеграций." data-en="Designed an integration service acting as a centralized communication layer for 7 internal systems, simplifying cross-service integrations and maintenance."><strong>Сервис интеграции</strong> — Спроектировал интеграционный сервис (integration layer), централизовав взаимодействие между 7 внутренними системами и снизив сложность поддержки межсервисных интеграций.</li>
-                        <li data-ru="Разработал переиспользуемую библиотеку генерации XLSX/ODT отчётов, стандартизировав экспорт данных и сократив время разработки новых выгрузок." data-en="Developed a reusable XLSX/ODT reporting library, standardizing data exports and reducing development time for new reporting features."><strong>Библиотека отчётов</strong> — Разработал переиспользуемую библиотеку генерации XLSX/ODT отчётов, стандартизировав экспорт данных и сократив время разработки новых выгрузок.</li>
-                        <li data-ru="Провожу регулярные code review (5–7 в неделю), участвую в архитектурном проектировании и поддерживаю техническую документацию сервисов." data-en="Conduct regular code reviews (5–7 weekly), participate in architectural design discussions, and maintain technical documentation.">Провожу регулярные code review (5–7 в неделю), участвую в архитектурном проектировании и поддерживаю техническую документацию сервисов.</li>
-                    </ul>
-                </div>
+            </div>
+        </div>
 
-                <div class="exp-card">
-                    <div class="exp-header">
-                        <div>
-                            <h3 data-ru="Python Backend Engineer (Contract)" data-en="Python Backend Engineer (Contract)">Python Backend Engineer (Contract)</h3>
-                            <div class="company">Community Lab · remote</div>
-                        </div>
-                        <div class="exp-date">Сент. 2025 – Нояб. 2025</div>
+        <!-- 2. Навыки -->
+        <div class="card card-skills">
+            <h2>
+                <span data-lang="en">Tech Stack</span>
+                <span data-lang="ru">Технологии</span>
+            </h2>
+            
+            <div class="skill-category">
+                <span class="skill-category-title">Languages</span>
+                <div class="skill-tags-container">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">Bash</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <span class="skill-category-title">Backend</span>
+                <div class="skill-tags-container">
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">SQLAlchemy</span>
+                    <span class="skill-tag">Alembic</span>
+                    <span class="skill-tag">pytest</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <span class="skill-category-title">Data</span>
+                <div class="skill-tags-container">
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">RabbitMQ</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <span class="skill-category-title">DevOps</span>
+                <div class="skill-tags-container">
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Linux</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Опыт работы -->
+        <div class="card card-experience">
+            <h2>
+                <span data-lang="en">Work Experience</span>
+                <span data-lang="ru">Опыт работы</span>
+            </h2>
+            
+            <!-- Job 1 -->
+            <div class="job-item">
+                <div class="job-header">
+                    <div>
+                        <h3>Backend Developer</h3>
+                        <p style="color: var(--text-secondary); font-size: 14px;">K-Technologies</p>
                     </div>
-                    <ul class="exp-details">
-                        <li data-ru="Разработал backend Telegram Mini App «Маяк» с нуля: проектирование API, бизнес-логики и структуры БД." data-en="Developed backend for Telegram Mini App “Mayak” from scratch, including API design, business logic, and database architecture.">Разработал backend Telegram Mini App «Маяк» с нуля: проектирование API, бизнес-логики и структуры БД.</li>
-                        <li data-ru="Оптимизировал структуру БД и SQL-запросы для стабильной работы при высокой конкурентной нагрузке (~1000 одновременных пользователей)." data-en="Optimized database schema and queries to support high concurrency (~1000 simultaneous users).">Оптимизировал структуру БД и SQL-запросы для стабильной работы при высокой конкурентной нагрузке (~1000 одновременных пользователей).</li>
-                        <li data-ru="Интегрировал платёжную систему и реализовал административные инструменты управления." data-en="Integrated payment system and implemented administrative management tools.">Интегрировал платёжную систему и реализовал административные инструменты управления.</li>
+                    <span class="job-date"><span data-lang="en">aug.</span><span data-lang="ru">авг.</span> 2022 — <span data-lang="en">present</span><span data-lang="ru">н.в.</span></span>
+                </div>
+                <div class="job-subtitle">
+                    <span data-lang="en">Responsibilities:</span>
+                    <span data-lang="ru">Обязанности:</span>
+                </div>
+                <ul class="job-desc">
+                    <li>
+                        <span data-lang="en">Development of a secure data aggregation system (GovTech/Astra Linux) with hybrid architecture (Monolith + Microservices).</span>
+                        <span data-lang="ru">Разработка системы защищенной агрегации данных (GovTech/Astra Linux) с гибридной архитектурой (Монолит + Микросервисы).</span>
+                    </li>
+                    <li>
+                        <span data-lang="en">Collaborating with the Team Lead on architectural decisions and mentoring junior developers.</span>
+                        <span data-lang="ru">Участие в архитектурных решениях совместно с Team Lead и менторинг младших разработчиков.</span>
+                    </li>
+                    <li>
+                        <span data-lang="en">Database optimization using SQLAlchemy and complex raw SQL for performance analysis.</span>
+                        <span data-lang="ru">Оптимизация работы БД (SQLAlchemy, нативный SQL) и анализ производительности.</span>
+                    </li>
+                </ul>
+                <div class="achievements-box">
+                    <div class="achievements-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                        <span data-lang="en">Key Achievements</span>
+                        <span data-lang="ru">Ключевые достижения</span>
+                    </div>
+                    <ul class="achievements-list">
+                        <li>
+                            <span data-lang="en">Reworked from the CRUD model to the Event Sourcing architecture, which <span class="metric-highlight">reduced component bindings</span>, <span class="metric-highlight">increased system throughput</span>, and provided <span class="metric-highlight">easier horizontal scaling</span> through an event-driven approach to data storage and processing.</span>
+                            <span data-lang="ru">Выполнил переход от CRUD-модели к Event Sourcing архитектуре, что <span class="metric-highlight">снизило связанность компонентов</span>, <span class="metric-highlight">повысило производительность</span> системы и обеспечило более <span class="metric-highlight">простое горизонтальное масштабирование</span> за счёт событийно-ориентированного подхода к хранению и обработке данных.</span>
+                        </li>
+                        <li>
+                            <span data-lang="en">Designed an Integration Layer connecting <span class="metric-highlight">7 internal systems</span>, solving interface mismatch issues and ensuring data delivery integrity.</span>
+                            <span data-lang="ru">Спроектировал Integration Layer, объединивший <span class="metric-highlight">7 внутренних систем</span>, решил проблему расхождения интерфейсов и обеспечил целостность доставки данных.</span>
+                        </li>
+                        <li>
+                            <span data-lang="en">Implemented Event Sourcing Snapshotting, reducing system recovery time by <span class="metric-highlight">3x</span> (preventing potential day-long downtime).</span>
+                            <span data-lang="ru">Внедрил механизм Snapshotting в Event Sourcing, ускорив восстановление системы в <span class="metric-highlight">3 раза</span> и предотвратив возможные простои.</span>
+                        </li>
+                        <li>
+                            <span data-lang="en">Developed and supported an internal backend boilerplate, which standardizes the service architecture and provides reusable modules for development teams, which increased <span class="metric-highlight">consistency</span> solutions and <span class="metric-highlight">lowered the cost of launching</span> new services</span>
+                            <span data-lang="ru">Разработал и поддерживал внутренний backend boilerplate, стандартизирующий архитектуру сервисов и предоставляющий переиспользуемые модули для команд разработки, что <span class="metric-highlight">повысило консистентность</span> решений и <span class="metric-highlight">снизило стоимость запуска</span> новых сервисов.</span>
+                        </li>
+                        <li>
+                            <span data-lang="en">Developed a unified report generation library, cutting development time for new exports from <span class="metric-highlight">2 days to 2 hours</span>.</span>
+                            <span data-lang="ru">Разработал библиотеку генерации отчетов, сократив время реализации новых выгрузок с <span class="metric-highlight">2 дней до 2 часов</span>.</span>
+                        </li>
+                        <li>
+                            <span data-lang="en">Conducting regular code reviews (<span class="metric-highlight">5-7 per week</span>), maintaining code quality and documentation standards.</span>
+                            <span data-lang="ru">Провожу регулярные code review (<span class="metric-highlight">5–7 в неделю</span>), поддерживаю стандарты качества кода и документации.</span>
+                        </li>
                     </ul>
                 </div>
-            </section>
-            <section class="additional">
-                <div class="highlight">
-                    <i class="fas fa-check-circle"></i>
-                    <span data-ru="Регулярное код-ревью, наставничество" data-en="Regular code reviews, mentoring">Регулярное код-ревью, наставничество</span>
+                <div class="job-tags">
+                    <span class="tech-mini-tag">Flask</span>
+                    <span class="tech-mini-tag">SQLAlchemy</span>
+                    <span class="tech-mini-tag">PostgreSQL</span>
+                    <span class="tech-mini-tag">RabbitMQ</span>
+                    <span class="tech-mini-tag">Alembic</span>
+                    <span class="tech-mini-tag">PyTest</span>
+                    <span class="tech-mini-tag">Linux</span>
+                    <span class="tech-mini-tag">Docker</span>
                 </div>
-                <div class="highlight">
-                    <i class="fas fa-book-open"></i>
-                    <span data-ru="Внутренние библиотеки и документация" data-en="Internal libraries and documentation">Внутренние библиотеки и документация</span>
+            </div>
+            <!-- Job 2 -->
+            <div class="job-item">
+                <div class="job-header">
+                    <div>
+                        <h3>Backend Developer</h3>
+                        <p style="color: var(--text-secondary); font-size: 14px;">CommunityLab (Contract)</p>
+                    </div>
+                    <span class="job-date"><span data-lang="en">sep.</span><span data-lang="ru">сент.</span> 2025 — <span data-lang="en">nov.</span><span data-lang="ru">нояб.</span> 2025</span>
                 </div>
-                <div class="highlight">
-                    <i class="fas fa-users"></i>
-                    <span data-ru="Опыт в командах 5–20 разработчиков" data-en="Experience in teams of 5-20 developers">Опыт в командах 5–20 разработчиков</span>
+                <div class="job-subtitle">
+                    <span data-lang="en">Responsibilities:</span>
+                    <span data-lang="ru">Обязанности:</span>
                 </div>
-                <div class="availability">
-                    <i class="fas fa-rocket"></i>
-                    <span data-ru="Открыт к предложениям · удалённо / гибрид (Москва)" data-en="Open to offers · remote / hybrid (Moscow)">Открыт к предложениям · удалённо / гибрид (Москва)</span>
+                <ul class="job-desc">
+                    <li>
+                        <span data-lang="en">Backend development for "Mayak" — an educational Telegram Mini App with video courses and admin panel.</span>
+                        <span data-lang="ru">Разработка backend для Telegram Mini App «Маяк» — образовательная платформа с видео-курсами и админ-панелью.</span>
+                    </li>
+                    <li>
+                        <span data-lang="en">Database architecture design using Supabase (PostgreSQL) and async task management.</span>
+                        <span data-lang="ru">Проектирование архитектуры БД на Supabase (PostgreSQL) и управление асинхронными задачами.</span>
+                    </li>
+                </ul>
+                <div class="achievements-box">
+                    <div class="achievements-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                        <span data-lang="en">Key Achievements</span>
+                        <span data-lang="ru">Ключевые достижения</span>
+                    </div>
+                    <ul class="achievements-list">
+                        <li>
+                            <span data-lang="en">Built the application from scratch: API design, business logic, and database schema.</span>
+                            <span data-lang="ru">Разработал приложение <span class="metric-highlight">с нуля</span>: спроектировал API, бизнес-логику, структуру БД.</span>
+                        </li>
+                        <li>
+                            <span data-lang="en">Optimized DB performance for <span class="metric-highlight">~1000 concurrent users</span> using indexing and caching strategies.</span>
+                            <span data-lang="ru">Оптимизировал производительность БД для (<span class="metric-highlight">~1000 одновременных пользователей</span>) через индексацию и стратегии кеширования.</span>
+                        </li>
+                        <li>
+                            <span data-lang="en">Integrated GetCourse payment system, adapting API to specific application requirements.</span>
+                            <span data-lang="ru"><span class="metric-highlight">Интегрировал платежную систему</span> GetCourse, адаптируя API под специфику приложения.</span>
+                        </li>
+                    </ul>
                 </div>
-            </section>
-        </main>
+                <div class="job-tags">
+                    <span class="tech-mini-tag">FastAPI</span>
+                    <span class="tech-mini-tag">Supabase</span>
+                    <span class="tech-mini-tag">Asyncio</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Проекты -->
+        <div class="card card-projects">
+            <h2>
+                <span data-lang="en">Featured Projects</span>
+                <span data-lang="ru">Ключевые проекты</span>
+            </h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <a href="#" class="project-link">
+                        <span data-lang="en">Protected Data Agreggation System</span>
+                        <span data-lang="ru">Система защищенной агрегации данных</span>
+                    </a>
+                    <p class="project-desc">
+                        <span data-lang="en">Service for monitoring, sharing, managing protected data.</span>
+                        <span data-lang="ru">Сервис для мониторинга, обмена, управления защищенными данными.</span>
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-mini-tag">Flask</span>
+                        <span class="tech-mini-tag">SQLAlchemy</span>
+                        <span class="tech-mini-tag">PostgreSQL</span>
+                        <span class="tech-mini-tag">RabbitMQ</span>
+                        <span class="tech-mini-tag">Alembic</span>
+                        <span class="tech-mini-tag">PyTest</span>
+                        <span class="tech-mini-tag">Linux</span>
+                        <span class="tech-mini-tag">Docker</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <a href="#" class="project-link">
+                        <span data-lang="en">Courses Telegram Mini App</span>
+                        <span data-lang="ru">Телеграм мини приложение для курсов</span>
+                    </a>
+                    <p class="project-desc">
+                        <span data-lang="en">Platform for educational courses inside Telegram ecosystem.</span>
+                        <span data-lang="ru">Платформа для образовательных курсов внутри экосистемы Telegram.</span>
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-mini-tag">FastAPI</span>
+                        <span class="tech-mini-tag">Supabase</span>
+                        <span class="tech-mini-tag">Asyncio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Контакты -->
+        <div class="card card-contact">
+            <h2>
+                <span data-lang="en">Message me</span>
+                <span data-lang="ru">Свяжитесь со мной</span>
+            </h2>
+            <div class="contact-grid">
+                <div class="contact-item-wrapper">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span class="contact-label">Phone</span>
+                    <a href="tel:+79995555798" class="contact-item">+7-(999)-555-57-98</a>
+                </div>
+                <div class="contact-item-wrapper">
+                    <svg class="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4Z" 
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 6L12 13L2 6" 
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:knxtex@gmail.com" class="contact-item">knxtex@gmail.com</a>
+                </div>
+                <div class="contact-item-wrapper">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    <span class="contact-label">Telegram</span>
+                    <a href="https://t.me/kerxl" class="contact-item">@kerxl</a>
+                </div>
+                <div class="contact-item-wrapper">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span class="contact-label">GitHub</span>
+                    <a href="https://github.com/kerxl" class="contact-item">github.com/kerxl</a>
+                </div>
+                <div class="contact-item-wrapper">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span class="contact-label">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/kerxl-6303aa3bb" class="contact-item">linkedin/kerxl</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        (function() {
+        function toggleTheme() {
             const body = document.body;
-            const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = themeToggle.querySelector('i');
-            const langToggle = document.getElementById('langToggle');
-
-            // Тема
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                body.classList.add('dark-theme');
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
+            const btn = document.getElementById('theme-toggle');
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
+                btn.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                btn.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
             }
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-theme');
-                const isDark = body.classList.contains('dark-theme');
-                themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            });
+        }
 
-            // Язык с плавной сменой
-            let currentLang = localStorage.getItem('language') || 'ru';
-            
-            function setLanguage(lang) {
-                const elements = document.querySelectorAll('[data-ru][data-en]');
-                elements.forEach(el => {
-                    // Добавляем класс для анимации
-                    el.classList.add('text-fade', 'active');
-                    setTimeout(() => {
-                        // Меняем текст
-                        const newText = lang === 'en' ? el.dataset.en : el.dataset.ru;
-                        if (newText !== undefined) {
-                            // Если внутри есть HTML (например <strong>), используем innerHTML,
-                            // иначе textContent для безопасности.
-                            if (newText.includes('<')) {
-                                el.innerHTML = newText;
-                            } else {
-                                el.textContent = newText;
-                            }
-                        }
-                        el.classList.remove('active');
-                    }, 120);
-                });
-                currentLang = lang;
-                localStorage.setItem('language', lang);
-            }
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.setAttribute('data-theme', 'light');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        }
 
-            setLanguage(currentLang);
-            langToggle.addEventListener('click', () => {
-                setLanguage(currentLang === 'ru' ? 'en' : 'ru');
-            });
-        })();
+        function setLang(lang) {
+            const body = document.body;
+            body.setAttribute('data-current-lang', lang);
+            document.getElementById('lang-en-btn').classList.remove('active');
+            document.getElementById('lang-ru-btn').classList.remove('active');
+            if (lang === 'en') document.getElementById('lang-en-btn').classList.add('active');
+            else document.getElementById('lang-ru-btn').classList.add('active');
+            localStorage.setItem('lang', lang);
+        }
+
+        const savedLang = localStorage.getItem('lang') || 'en';
+        setLang(savedLang);
     </script>
 </body>
 </html>
